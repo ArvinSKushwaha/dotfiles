@@ -53,6 +53,9 @@ cmp.setup({
                 nvim_lsp = "[LSP]",
                 luasnip = "[Snippet]",
                 fuzzy_buffer = "[Buffer]",
+                nvim_lsp_signature_help = "[SIG]",
+                calc = "[#]",
+                nvim_lua = "[Lua]",
                 path = "[Path]",
                 crates = "[Crates]",
             })[entry.source.name]
@@ -102,12 +105,13 @@ cmp.setup({
 }),
     },
     sources = cmp.config.sources({
+        { name = "path" },
         { name = "nvim_lsp" },
+        { name = "nvim_lsp_signature_help" },
         { name = "luasnip" },
         { name = "crates" },
-    }, {
         { name = "buffer" },
-        { name = "path" },
+        { name = "calc" },
     }),
     confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,

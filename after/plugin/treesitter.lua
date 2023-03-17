@@ -8,11 +8,11 @@ vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEn
 })
 
 require('nvim-treesitter.configs').setup({
-    ensure_installed = { "c", "rust", "lua", "python", "go" },
+    ensure_installed = { "c", "rust", "lua", "python", "go", "toml" },
+    auto_install = true,
     ignore_installed = {},
 
     highlight = {
-
         enable = true,
         disable = function(lang, buf)
             local max_filesize = 100 * 1024 -- 100 KB
@@ -21,7 +21,12 @@ require('nvim-treesitter.configs').setup({
                 return true
             end
         end,
-
         additional_vim_regex_highlighting = false,
-    }
+    },
+    indent = { enable = true },
+    rainbow = {
+        enable = true,
+        extended_mode = true,
+        max_file_lines = nil,
+    },
 })
