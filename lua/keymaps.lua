@@ -73,15 +73,15 @@ map('n', '<F5>', ':UndotreeToggle<CR>', {})
 --[[ Vimspector ]]--
 --------------------
 
-map('n', '<M-l>', ':call vimspector#Launch()<CR>', {})
-map('n', '<M-s>', ':call vimspector#StepOver()<CR>', {})
-map('n', '<M-r>', ':call vimspector#Reset()<CR>', {})
-map('n', '<M-o>', ':call vimspector#StepOut()<CR>', {})
-map('n', '<M-i>', ':call vimspector#StepInto()<CR>', {})
+map('n', '<A-l>', ':call vimspector#Launch()<CR>', {})
+map('n', '<A-s>', ':call vimspector#StepOver()<CR>', {})
+map('n', '<A-r>', ':call vimspector#Reset()<CR>', {})
+map('n', '<A-o>', ':call vimspector#StepOut()<CR>', {})
+map('n', '<A-i>', ':call vimspector#StepInto()<CR>', {})
 
-map('n', '<M-b>', ':call vimspector#ToggleBreakpoint()<CR>', {})
-map('n', '<M-w>', ':call vimspector#AddWatch<CR>', {})
-map('n', '<M-e>', ':call vimspector#Evaluate<CR>', {})
+map('n', '<A-b>', ':call vimspector#ToggleBreakpoint()<CR>', {})
+map('n', '<A-w>', ':call vimspector#AddWatch<CR>', {})
+map('n', '<A-e>', ':call vimspector#Evaluate<CR>', {})
 
 -------------
 --[[ Hop ]]--
@@ -99,3 +99,23 @@ map('n', '<leader>xx', '<cmd>Trouble workspace_diagnostics<cr>', {noremap = true
 map('n', '<leader>xd', '<cmd>Trouble document_diagnostics<cr>', {noremap = true})
 map('n', '<leader>xl', '<cmd>Trouble loclist<cr>', {noremap = true})
 map('n', '<leader>xq', '<cmd>Trouble quickfix<cr>', {noremap = true})
+
+-----------------
+--[[ LazyGit ]]--
+-----------------
+
+map('n', '<leader>lg', '<cmd>LazyGit<cr>', {silent = true})
+
+-----------------
+--[[ Neovide ]]--
+-----------------
+
+local change_scale_factor = function(delta)
+  vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+end
+vim.keymap.set("n", "<C-=>", function()
+  change_scale_factor(1.25)
+end)
+vim.keymap.set("n", "<C-->", function()
+  change_scale_factor(1/1.25)
+end)

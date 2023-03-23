@@ -110,7 +110,18 @@ return require("packer").startup(function(use)
     }
 
     use { "nanotee/zoxide.vim" }
-    use { "andweeb/presence.nvim", config = function() require("lazy_settings.presence") end }
+    use { "tpope/vim-fugitive" }
+    use { "kdheepak/lazygit.nvim" }
+
+    use { "jose-elias-alvarez/null-ls.nvim" }
+    use { "mfussenegger/nvim-dap" }
+
+    use {
+        "jay-babu/mason-null-ls.nvim",
+        "jay-babu/mason-nvim-dap.nvim",
+    }
+
+    -- use { "andweeb/presence.nvim", config = function() require("lazy_settings.presence") end }
 
     -- use { "luk400/vim-jukit" }
 

@@ -9,7 +9,8 @@ end
 load('options');
 
 load('plugins');
-load('keymaps');
+
 load('commands');
+load('keymaps');
 
 vim.cmd [[DisableArrowKeys]]

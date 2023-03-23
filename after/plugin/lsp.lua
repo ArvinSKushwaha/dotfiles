@@ -2,6 +2,12 @@ require('mason').setup()
 require('mason-lspconfig').setup({
     automatic_installation = true
 })
+require("mason-null-ls").setup({
+    automatic_setup = true,
+})
+require("mason-nvim-dap").setup({
+    automatic_setup = true,
+})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local opts = { noremap = true, silent = true }
@@ -93,4 +99,14 @@ require("mason-lspconfig").setup_handlers {
     end
 }
 
+require('mason-null-ls').setup_handlers {
+    function(source_name, methods)
+      require("mason-null-ls.automatic_setup")(source_name, methods)
+    end,
+}
+
+require 'mason-nvim-dap'.setup_handlers {
+}
+
+require('null-ls').setup()
 require('crates').setup()

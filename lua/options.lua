@@ -7,6 +7,10 @@ local custom_options = {
     vimspector_bottombar_height = 15,
     vimspector_terminal_maxwidth = 70,
     neovide_scale_factor = 0.6,
+    neovide_cursor_animate_command_line = false,
+    neovide_cursor_animate_in_insert_mode = false,
+    neovide_cursor_animation_length = 0.07,
+    neovide_hide_mouse_when_typing = true,
 }
 
 for op, val in pairs(custom_options) do
