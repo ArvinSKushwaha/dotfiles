@@ -15,6 +15,14 @@ map("v", "k", "v:count ? 'k' : 'gk'", { noremap = true, expr = true })
 map("n", "<C-a>", "ggVG", {})
 map("n", "<C-c>", ":%y<CR>", {})
 
+map("n", "+", "<C-a>", {})
+map("n", "-", "<C-x>", {})
+
+map("v", "+", "<C-a>", {})
+map("v", "-", "<C-x>", {})
+map("v", "<leader>+", "g<C-a>", {})
+map("v", "<leader>-", "g<C-x>", {})
+
 ----------------
 --[[ Packer ]] --
 ----------------

@@ -121,6 +121,8 @@ return require("packer").startup(function(use)
         "jay-babu/mason-nvim-dap.nvim",
     }
 
+    use { "axvr/zepl.vim" }
+
     -- use { "andweeb/presence.nvim", config = function() require("lazy_settings.presence") end }
 
     -- use { "luk400/vim-jukit" }
