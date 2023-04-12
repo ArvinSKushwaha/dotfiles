@@ -10,31 +10,39 @@ require("mason-nvim-dap").setup({
 })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+local opts = { noremap = false, silent = true }
+local map = vim.keymap.set;
 
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
-vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
-vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-vim.keymap.set('n', '<leader>c', vim.lsp.buf.code_action, opts)
-vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-local onattach = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    -- lsp_status.on_attach(client)
-end
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    map('n', '<space>e', vim.diagnostic.open_float, opts)
+    map('n', '[d', vim.diagnostic.goto_prev, opts)
+    map('n', ']d', vim.diagnostic.goto_next, opts)
+    map('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+    map('n', 'gD', vim.lsp.buf.declaration, opts)
+    map('n', 'gd', vim.lsp.buf.definition, opts)
+    map('n', 'K', vim.lsp.buf.hover, opts)
+    map('n', 'gi', vim.lsp.buf.implementation, opts)
+    map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    map('i', '<C-k>', vim.lsp.buf.signature_help, opts)
+    map('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+    map('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    map('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+    map('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    map('n', '<space>rn', vim.lsp.buf.rename, opts)
+    map('n', '<space>c', vim.lsp.buf.code_action, opts)
+    map('n', 'gr', vim.lsp.buf.references, opts)
+    map('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
+  end,
+})
 
 local default_settings = {
     onattach = onattach,
@@ -66,7 +74,7 @@ require("mason-lspconfig").setup_handlers {
                 }
             }
         }
-        require('rust-tools').setup(v)
+        require('rust-tools').setup(settings)
     end,
 
     ["julials"] = function()
@@ -97,15 +105,6 @@ require("mason-lspconfig").setup_handlers {
         }
         require('lspconfig')["lua_ls"].setup(settings)
     end
-}
-
-require('mason-null-ls').setup_handlers {
-    function(source_name, methods)
-      require("mason-null-ls.automatic_setup")(source_name, methods)
-    end,
-}
-
-require 'mason-nvim-dap'.setup_handlers {
 }
 
 require('null-ls').setup()

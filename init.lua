@@ -7,10 +7,9 @@ end
 
 -- Load options before anything else
 load('options');
-
 load('plugins');
-
 load('commands');
 load('keymaps');
+load('autocmds');
 
 vim.cmd [[DisableArrowKeys]]

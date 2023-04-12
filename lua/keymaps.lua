@@ -23,13 +23,15 @@ map("v", "-", "<C-x>", {})
 map("v", "<leader>+", "g<C-a>", {})
 map("v", "<leader>-", "g<C-x>", {})
 
-----------------
---[[ Packer ]] --
-----------------
-map('n', '<leader>u', ":PackerSync<CR>", {})
+
+--------------
+--[[ Lazy ]]--
+--------------
+
+map('n', '<leader>uu', ':Lazy<CR>', {})
 
 -------------------
---[[ Nvim Tree ]] --
+--[[ Nvim Tree ]]--
 -------------------
 map('n', '<leader>o', require('nvim-tree.api').tree.toggle, {})
 
@@ -121,9 +123,9 @@ map('n', '<leader>lg', '<cmd>LazyGit<cr>', {silent = true})
 local change_scale_factor = function(delta)
   vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
 end
-vim.keymap.set("n", "<C-=>", function()
+map("n", "<C-=>", function()
   change_scale_factor(1.25)
 end)
-vim.keymap.set("n", "<C-->", function()
+map("n", "<C-->", function()
   change_scale_factor(1/1.25)
 end)

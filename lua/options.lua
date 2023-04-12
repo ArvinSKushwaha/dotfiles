@@ -1,16 +1,20 @@
 local custom_options = {
-    loaded_netrwPlugin = 1,
-    loaded_netrw = 1,
     instant_username = "Arvin Kushwaha",
-    python3_host_prog = "/usr/bin/python3",
-    vimspector_sidebar_width = 85,
-    vimspector_bottombar_height = 15,
-    vimspector_terminal_maxwidth = 70,
-    neovide_scale_factor = 0.6,
+    loaded_netrw = 1,
+    loaded_netrwPlugin = 1,
     neovide_cursor_animate_command_line = false,
     neovide_cursor_animate_in_insert_mode = false,
     neovide_cursor_animation_length = 0.07,
     neovide_hide_mouse_when_typing = true,
+    neovide_scale_factor = 0.6,
+    python3_host_prog = "/usr/bin/python3",
+    tex_conceal='abdmg',
+    tex_flavor = 'latex',
+    vimspector_bottombar_height = 15,
+    vimspector_sidebar_width = 85,
+    vimspector_terminal_maxwidth = 70,
+    vimtex_view_general_viewer = 'zathura',
+    vimtex_quickfix_mode = 0,
 }
 
 for op, val in pairs(custom_options) do
