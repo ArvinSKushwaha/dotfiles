@@ -21,7 +21,7 @@ require('nvim-treesitter.configs').setup({
                 return true
             end
         end,
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = { 'latex' },
     },
     indent = { enable = true },
     rainbow = {

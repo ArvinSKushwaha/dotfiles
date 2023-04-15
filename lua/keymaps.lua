@@ -129,3 +129,14 @@ end)
 map("n", "<C-->", function()
   change_scale_factor(1/1.25)
 end)
+
+------------------
+--[[ LuaSnips ]]--
+------------------
+
+
+map('n', '<leader>L', function() require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snips" }) end)
+map('i', '<c-d>', '<plug>luasnip-next-choice', {})
+map('s', '<c-d>', '<plug>luasnip-next-choice', {})
+map('i', '<c-c>', '<plug>luasnip-prev-choice', {})
+map('s', '<c-c>', '<plug>luasnip-prev-choice', {})

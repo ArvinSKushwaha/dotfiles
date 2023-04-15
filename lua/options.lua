@@ -13,7 +13,7 @@ local custom_options = {
     vimspector_bottombar_height = 15,
     vimspector_sidebar_width = 85,
     vimspector_terminal_maxwidth = 70,
-    vimtex_view_general_viewer = 'zathura',
+    vimtex_view_method = 'zathura',
     vimtex_quickfix_mode = 0,
 }
 
@@ -28,7 +28,7 @@ local options = {
 	clipboard = "unnamed,unnamedplus",
 	cmdheight = 1,
 	compatible = false,
-    completeopt = { 'menuone', 'noselect', 'noinsert' },
+    completeopt = { 'menuone', 'noselect', 'noinsert', 'preview', 'menu' },
     conceallevel = 0,
 	cursorline = true,
     encoding = "utf-8",
@@ -61,7 +61,7 @@ local options = {
 	updatetime = 0,
 	virtualedit = "onemore",
     scrolloff = 8,
-    guifont = "JetBrains Mono Nerd Font:h9",
+    guifont = "JetBrainsMono Nerd Font:h12",
 }
 
 -- Set options
