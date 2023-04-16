@@ -63,6 +63,45 @@ function doithandler(args, parent, user_args)
     end
 end
 
+function matrix_handler(args, parent, user_args)
+    local start, finish = parent.captures[1], parent.captures[4]
+    local rows, cols = tonumber(parent.captures[2]), tonumber(parent.captures[3])
+    local matrix = {}
+    local nodes = {}
+    local tabstop = string.rep(' ', vim.opt.tabstop:get())
+
+    for row=1,rows do
+        table.insert(matrix, {})
+        for col=1,cols do
+            table.insert(matrix[row], '<>')
+
+            local def = 0
+
+            if row == col and rows == cols then
+                def = 1 
+            end
+
+            table.insert(nodes, i((row - 1) * cols + col, tostring(def)))
+        end
+        matrix[row] = table.concat(matrix[row], ' & ') .. ' \\\\'
+    end
+
+    return sn(nil, fmta(
+        string.format("\\begin{%s}\n<>\n\\end{%s}", start, finish),
+        {
+            d(1, function(args, parent, user_args)
+                return isn(nil,
+                    fmta(
+                        tabstop .. table.concat(matrix, '\n'),
+                        nodes
+                    ),
+                    "$PARENT_INDENT" .. tabstop
+                )
+            end, {}, {})
+        }
+    ))
+end
+
 return {
     s(
         { trig = "ff", snippetType="autosnippet" },
@@ -160,6 +199,18 @@ return {
     s(
         { trig = "doit" },
         fmta("<>", { f(doithandler, {}, {}) }),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = "mat", snippetType="autosnippet" },
+        fmta([[
+            \begin{<>matrix} {<>,<>} \end{<>matrix}
+        ]], { i(1, "b"), i(2), i(3), rep(1) }),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = "\\begin{(%amatrix)}.*{(%d+),(%d+)}.*\\end{(%amatrix)}", regTrig = true, wordTrig = false },
+        fmta("<>", { d(1, matrix_handler) }),
         { condition=helpers.in_mathzone }
     )
 }

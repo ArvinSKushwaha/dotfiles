@@ -23,6 +23,11 @@ map("v", "-", "<C-x>", {})
 map("v", "<leader>+", "g<C-a>", {})
 map("v", "<leader>-", "g<C-x>", {})
 
+map("i", "<C-q>", "<C-t>", {})
+map("i", "<C-s>", "<C-d>", {})
+
+map("n", "<C-;>", ";", {})
+map("v", "<C-;>", ";", {})
 
 --------------
 --[[ Lazy ]]--
@@ -39,7 +44,7 @@ map('n', '<leader>o', require('nvim-tree.api').tree.toggle, {})
 --[[ Tagbar ]]--
 ----------------
 
-map('n', '<F8>', ':TagbarToggle<CR>', {})
+map('n', ';k', ':TagbarToggle<CR>', {})
 
 -------------------
 --[[ Telescope ]] --
