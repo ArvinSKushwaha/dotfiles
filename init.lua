@@ -12,4 +12,4 @@ load('commands');
 load('keymaps');
 load('autocmds');
 
-vim.cmd [[DisableArrowKeys]]
+-- vim.cmd [[DisableArrowKeys]]

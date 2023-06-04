@@ -60,7 +60,7 @@ local options = {
 	title = true,
 	updatetime = 0,
 	virtualedit = "onemore",
-    scrolloff = 8,
+    scrolloff = 4,
     guifont = "JetBrainsMono Nerd Font:h12",
 }
 

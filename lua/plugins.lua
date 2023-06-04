@@ -30,6 +30,7 @@ return require("lazy").setup({
     "hrsh7th/nvim-cmp",
     "mfussenegger/nvim-dap",
     "neovim/nvim-lspconfig",
+    "nvim-treesitter/nvim-treesitter-context",
     "simrat39/rust-tools.nvim",
     "preservim/tagbar",
     "akinsho/toggleterm.nvim",
@@ -38,6 +39,8 @@ return require("lazy").setup({
     "lervag/vimtex",
     "axvr/zepl.vim",
     "nanotee/zoxide.vim",
+    "wsdjeg/vim-fetch",
+    "fladson/vim-kitty",
     { "catppuccin/nvim", name = "catppuccin" },
     -- "luk400/vim-jukit",
     {
@@ -46,19 +49,22 @@ return require("lazy").setup({
         dependencies = { "nvim-lua/plenary.nvim" },
     },
     {
+        "numToStr/Comment.nvim",
+        config = function() require("Comment").setup() end
+    },
+    {
         "kylechui/nvim-surround",
         version = "*", -- for stability; omit to use `main` branch for the latest features
-        config = function() require("nvim-surround").setup({ })
-        end
+        config = function() require("nvim-surround").setup({ }) end
     },
     {
         "phaazon/hop.nvim",
         branch = "v2",
-        config = function() require "hop".setup {} end
+        config = function() require("hop").setup {} end
     },
     {
         "j-hui/fidget.nvim", 
-        config = function() require('fidget').setup {} end
+        config = function() require("fidget").setup {} end
     },
     {
         "folke/trouble.nvim",
@@ -89,17 +95,70 @@ return require("lazy").setup({
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
     },
-    {
-        'glacambre/firenvim',
-
-        -- Lazy load firenvim
-        -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-        cond = not not vim.g.started_by_firenvim,
-        build = function()
-            require("lazy").load({ plugins = "firenvim", wait = true })
-            vim.fn["firenvim#install"](0)
-        end
-    }
+    -- {
+    --     "folke/noice.nvim",
+    --     config = function()
+    --         require("noice").setup({
+    --             lsp = {
+    --                 -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    --                 override = {
+    --                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+    --                     ["vim.lsp.util.stylize_markdown"] = true,
+    --                     ["cmp.entry.get_documentation"] = true,
+    --                 },
+    --             },
+    --             popupmenu = {
+    --                 enabled = true, -- enables the Noice popupmenu UI
+    --                 ---@type 'nui'|'cmp'
+    --                 backend = "nui", -- backend to use to show regular cmdline completions
+    --                 ---@type NoicePopupmenuItemKind|false
+    --                 -- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
+    --                 kind_icons = {}, -- set to `false` to disable icons
+    --             },
+    --             -- you can enable a preset for easier configuration
+    --             presets = {
+    --                 bottom_search = false, -- use a classic bottom cmdline for search
+    --                 command_palette = true, -- position the cmdline and popupmenu together
+    --                 long_message_to_split = true, -- long messages will be sent to a split
+    --                 inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    --                 lsp_doc_border = true, -- add a border to hover docs and signature help
+    --             },
+    --             views = {
+    --                 split = {
+    --                     enter = true
+    --                 }
+    --             },
+    --             routes = {
+    --                 {
+    --                     filter = {
+    --                         event = "msg_show",
+    --                         kind = "",
+    --                     },
+    --                     opts = { skip = true },
+    --                 },
+    --                 {
+    --                     filter = {
+    --                         event = "msg_show",
+    --                         kind = "search_count",
+    --                     },
+    --                     opts = { skip = true },
+    --                 },
+    --                 {
+    --                     filter = {
+    --                         event = "msg_show",
+    --                         kind = "",
+    --                         find = "written",
+    --                     },
+    --                     opts = { skip = true },
+    --                 },
+    --             },
+    --         })
+    --     end,
+    --     dependencies = {
+    --         "MunifTanjim/nui.nvim",
+    --         "rcarriga/nvim-notify",
+    --     },
+    -- }
     -- { "andweeb/presence.nvim", config = function() require("lazy_settings.presence") end }
 
 })

@@ -3,6 +3,9 @@ local telescope_builtin = require('telescope.builtin')
 
 vim.g.mapleader = " "
 
+map("n", "<leader>d", ":bd<CR>", {})
+map("n", "<C-w>Q", ":qa<CR>", {})
+
 ----------------
 --[[ Motion ]] --
 ----------------
@@ -23,8 +26,8 @@ map("v", "-", "<C-x>", {})
 map("v", "<leader>+", "g<C-a>", {})
 map("v", "<leader>-", "g<C-x>", {})
 
-map("i", "<C-q>", "<C-t>", {})
-map("i", "<C-s>", "<C-d>", {})
+map("i", "<C-.>", "<C-t>", {})
+map("i", "<C-,>", "<C-d>", {})
 
 map("n", "<C-;>", ";", {})
 map("v", "<C-;>", ";", {})
@@ -102,9 +105,9 @@ map('n', '<A-e>', ':call vimspector#Evaluate<CR>', {})
 --[[ Hop ]]--
 -------------
 
-map('n', '<C-h>', ':HopLine<CR>', {})
-map('n', '<C-H>', ':HopAnywhere<CR>', {})
-map('n', '<C-j>', ':HopPattern<CR>', {})
+map('n', '<C-j>', ':HopLine<CR>', {})
+map('n', '<C-J>', ':HopAnywhere<CR>', {})
+map('n', '<C-h>', ':HopPattern<CR>', {})
 
 -----------------
 --[[ Trouble ]]--
@@ -141,7 +144,16 @@ end)
 
 
 map('n', '<leader>L', function() require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snips" }) end)
-map('i', '<c-d>', '<plug>luasnip-next-choice', {})
-map('s', '<c-d>', '<plug>luasnip-next-choice', {})
-map('i', '<c-c>', '<plug>luasnip-prev-choice', {})
-map('s', '<c-c>', '<plug>luasnip-prev-choice', {})
+map('i', '<c-c>', '<plug>luasnip-next-choice', {})
+map('s', '<c-c>', '<plug>luasnip-next-choice', {})
+map('i', '<c-x>', '<plug>luasnip-prev-choice', {})
+map('s', '<c-x>', '<plug>luasnip-prev-choice', {})
+
+
+
+----------------
+--[[ Aerial ]]--
+----------------
+
+map('n', '<leader>a', '<cmd>AerialToggle!<CR>', {})
+

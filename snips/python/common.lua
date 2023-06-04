@@ -25,30 +25,13 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 
 local line_begin = require('luasnip.extras.expand_conditions').line_begin
-local helpers = require('luasnip-helpers')
 
 return {
     s(
-        { trig = "assignment", snippetType="autosnippet" },
+        { trig = "main" },
         fmta([[
-            \documentclass[14pt]{assignment}
-
-            \usepackage{tikz}
-            \usepackage{mathtools}
-            \usepackage{setspace}
-
-            \student{<>}
-            \teacher{<>}
-            \course{<>}
-            \homeworktype{<>}
-            \homeworkcount{<>}
-            \duedate{<>}
-
-            \begin{document}
-                \maketitle
-
+            if __name__ == "__main__":
                 <>
-            \end{document}
-        ]], { i(1, "Arvin Kushwaha"), i(2), i(3), i(4, "Homework"), i(5), i(6), i(7) })
+        ]], { i(1) })
     ),
 }

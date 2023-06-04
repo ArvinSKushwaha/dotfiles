@@ -114,13 +114,24 @@ return {
         { condition=helpers.in_mathzone }
     ),
     s(
-        { trig = "dbr", snippetType="autosnippet" },
+        { trig = "ps", snippetType="autosnippet" },
         fmta("\\br{<>}", { i(1) }),
         { condition=helpers.in_mathzone }
     ),
     s(
-        { trig = "cbr", snippetType="autosnippet" },
-        fmta("\\cbr{<>}", { i(1) })
+        { trig = "pr", snippetType="autosnippet" },
+        fmta("\\cbr{<>}", { i(1) }),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = "pv", snippetType="autosnippet" },
+        fmta("\\abs{<>}", { i(1) }),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = "pV", snippetType="autosnippet" },
+        fmta("\\norm{<>}", { i(1) }),
+        { condition=helpers.in_mathzone }
     ),
     s(
         { trig = "qq", snippetType="autosnippet" },
@@ -156,14 +167,18 @@ return {
     ),
     s(
         { trig = "MM", snippetType="autosnippet" },
-        fmta("\\[ <> \\]", { d(1, helpers.get_visual) }),
+        fmta([[
+            \[
+                <> 
+            .\]
+        ]], { d(1, helpers.get_visual) }),
         { condition=helpers.in_text }
     ),
     s(
         { trig = "dnv", snippetType="autosnippet" },
         fmta([[
             \begin{<>}
-               <>
+                <>
             \end{<>}
         ]], { i(1), i(0), rep(1) })
     ),
@@ -171,12 +186,23 @@ return {
         { trig = "dkz", snippetType="autosnippet" },
         fmta([[
             \begin{figure}
-               \centering
-               \begin{tikzpicture}
-                  <>
-               \end{tikzpicture}
+                \centering
+                \begin{tikzpicture}
+                    <>
+                \end{tikzpicture}
             \end{figure}
         ]], { i(1) })
+    ),
+    s(
+        { trig = "dimg", snippetType="autosnippet" },
+        fmta([[
+            \begin{figure}
+                \centering
+                \includegraphics[<>]{<>}
+                \caption{<>}
+                \label{<>}
+            \end{figure}
+        ]], { i(2), i(1), i(3), i(4) })
     ),
     s(
         { trig = "sb", snippetType="autosnippet" },
@@ -202,7 +228,7 @@ return {
         { condition=helpers.in_mathzone }
     ),
     s(
-        { trig = "mat", snippetType="autosnippet" },
+        { trig = "mtc", snippetType="autosnippet" },
         fmta([[
             \begin{<>matrix} {<>,<>} \end{<>matrix}
         ]], { i(1, "b"), i(2), i(3), rep(1) }),

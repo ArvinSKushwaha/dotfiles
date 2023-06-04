@@ -66,12 +66,15 @@ require("mason-lspconfig").setup_handlers {
 
     ["rust_analyzer"] = function()
         local settings = copy1(default_settings)
-        settings["cmd"] = { "ra-multiplex" }
-        settings.settings["rust-analyzer"] = {
-            check = {
-                overrideCommand = {
-                    "cargo", "clippy", "--message-format=json-diagnostic-rendered-ansi", "--allow-dirty",
-                }
+        -- settings["cmd"] = { "ra-multiplex" }
+        settings.server = {
+            ["rust-analyzer"] = {
+                check = {
+                    overrideCommand = {
+                        "cargo", "clippy", "--message-format=json-diagnostic-rendered-ansi", "--allow-dirty",
+                    },
+                    allTargets = false,
+                },
             }
         }
         require('rust-tools').setup(settings)
