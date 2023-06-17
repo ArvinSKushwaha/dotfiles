@@ -19,12 +19,12 @@ return require("lazy").setup({
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-path",
+    "elkowar/yuck.vim",
     "saadparwaiz1/cmp_luasnip",
     "feline-nvim/feline.nvim",
     "jbyuki/instant.nvim",
     "kdheepak/lazygit.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "jay-babu/mason-null-ls.nvim",
     "jay-babu/mason-nvim-dap.nvim",
     "jose-elias-alvarez/null-ls.nvim",
     "hrsh7th/nvim-cmp",
@@ -41,6 +41,28 @@ return require("lazy").setup({
     "nanotee/zoxide.vim",
     "wsdjeg/vim-fetch",
     "fladson/vim-kitty",
+    "ixru/nvim-markdown",
+    "mg979/vim-visual-multi",
+    "elihunter173/dirbuf.nvim",
+    {
+        "LhKipp/nvim-nu",
+        config = function() require("nu").setup{} end,
+    },
+    {
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "jose-elias-alvarez/null-ls.nvim",
+        },
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        ft = "markdown",
+        lazy = true,
+        cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
+        build = "cd app && npm install && git reset --hard",
+    },
     { "catppuccin/nvim", name = "catppuccin" },
     -- "luk400/vim-jukit",
     {
@@ -64,6 +86,7 @@ return require("lazy").setup({
     },
     {
         "j-hui/fidget.nvim", 
+        branch = "legacy",
         config = function() require("fidget").setup {} end
     },
     {

@@ -32,6 +32,12 @@ map("i", "<C-,>", "<C-d>", {})
 map("n", "<C-;>", ";", {})
 map("v", "<C-;>", ";", {})
 
+map("n", "<A-f>", ":tabnext<CR>", {})
+map("n", "<A-w>", ":tabprevious<CR>", {})
+
+map("n", "<CR>", "o", {})
+map("n", "<S-CR>", "O", {})
+
 --------------
 --[[ Lazy ]]--
 --------------
@@ -91,15 +97,15 @@ map('n', '<F5>', ':UndotreeToggle<CR>', {})
 --[[ Vimspector ]]--
 --------------------
 
-map('n', '<A-l>', ':call vimspector#Launch()<CR>', {})
-map('n', '<A-s>', ':call vimspector#StepOver()<CR>', {})
-map('n', '<A-r>', ':call vimspector#Reset()<CR>', {})
-map('n', '<A-o>', ':call vimspector#StepOut()<CR>', {})
-map('n', '<A-i>', ':call vimspector#StepInto()<CR>', {})
+-- map('n', '<A-l>', ':call vimspector#Launch()<CR>', {})
+-- map('n', '<A-s>', ':call vimspector#StepOver()<CR>', {})
+-- map('n', '<A-r>', ':call vimspector#Reset()<CR>', {})
+-- map('n', '<A-o>', ':call vimspector#StepOut()<CR>', {})
+-- map('n', '<A-i>', ':call vimspector#StepInto()<CR>', {})
 
-map('n', '<A-b>', ':call vimspector#ToggleBreakpoint()<CR>', {})
-map('n', '<A-w>', ':call vimspector#AddWatch<CR>', {})
-map('n', '<A-e>', ':call vimspector#Evaluate<CR>', {})
+-- map('n', '<A-b>', ':call vimspector#ToggleBreakpoint()<CR>', {})
+-- map('n', '<A-w>', ':call vimspector#AddWatch<CR>', {})
+-- map('n', '<A-e>', ':call vimspector#Evaluate<CR>', {})
 
 -------------
 --[[ Hop ]]--
@@ -150,10 +156,9 @@ map('i', '<c-x>', '<plug>luasnip-prev-choice', {})
 map('s', '<c-x>', '<plug>luasnip-prev-choice', {})
 
 
+-------------------------
+--[[ MarkdownPreview ]]--
+-------------------------
 
-----------------
---[[ Aerial ]]--
-----------------
-
-map('n', '<leader>a', '<cmd>AerialToggle!<CR>', {})
+map('n', '<leader>m', '<cmd>MarkdownPreviewToggle<CR>', {})
 

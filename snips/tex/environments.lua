@@ -183,6 +183,15 @@ return {
         ]], { i(1), i(0), rep(1) })
     ),
     s(
+        { trig = "dtm", snippetType="autosnippet" },
+        fmta([[
+            \begin{itemize}
+                <>
+            \end{itemize}
+        ]], { i(1) }),
+        { condition=helpers.in_text }
+    ),
+    s(
         { trig = "dkz", snippetType="autosnippet" },
         fmta([[
             \begin{figure}
@@ -238,5 +247,11 @@ return {
         { trig = "\\begin{(%amatrix)}.*{(%d+),(%d+)}.*\\end{(%amatrix)}", regTrig = true, wordTrig = false },
         fmta("<>", { d(1, matrix_handler) }),
         { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = "pkg" },
+        fmta([[
+            \usepackage[<>]{<>}
+            ]], { i(2), i(1) })
     )
 }

@@ -15,6 +15,11 @@ local custom_options = {
     vimspector_terminal_maxwidth = 70,
     vimtex_view_method = 'zathura',
     vimtex_quickfix_mode = 0,
+    mkdp_markdown_css = vim.fs.normalize('~/.config/mkdp_markdown.css'),
+    VM_leader = 'l',
+    VM_theme = 'iceblue',
+    VM_mouse_mappings = 1,
+    VM_maps = { Undo = 'u', Redo = '<C-r>' },
 }
 
 for op, val in pairs(custom_options) do
@@ -56,6 +61,7 @@ local options = {
 	splitbelow = true,
 	splitright = true,
     tabstop = 4,
+    textwidth = 80,
 	termguicolors = true,
 	title = true,
 	updatetime = 0,

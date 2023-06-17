@@ -120,6 +120,16 @@ return {
         { condition=helpers.in_mathzone }
     ),
     s(
+        { trig = ";t", snippetType="autosnippet" },
+        fmta(" \\tau", { }),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = ";T", snippetType="autosnippet" },
+        fmta(" \\Tau", { }),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
         { trig = "'z", snippetType="autosnippet" },
         fmta(" \\zeta ", { }),
         { condition=helpers.in_mathzone }
@@ -162,6 +172,11 @@ return {
     s(
         { trig = "=>", snippetType="autosnippet" },
         fmta(" \\implies ", { }),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = "=<", snippetType="autosnippet" },
+        fmta(" \\impliedby ", { }),
         { condition=helpers.in_mathzone }
     ),
     s(
@@ -321,6 +336,21 @@ return {
     s(
         { trig = "hh", snippetType = "autosnippet" },
         fmta("\\hat{<>}", { i(1) }),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = "<s", snippetType = "autosnippet" },
+        fmta("\\subseteq", {}),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = "mt", snippetType = "autosnippet" },
+        fmta("\\mappingto{<>}{<>}{<>}", { i(1), i(2), i(3) }),
+        { condition=helpers.in_mathzone }
+    ),
+    s(
+        { trig = "mp", snippetType = "autosnippet" },
+        fmta("\\mapping{<>}{<>}{<>}", { i(1), i(2), i(3) }),
         { condition=helpers.in_mathzone }
     )
 }
