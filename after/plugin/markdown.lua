@@ -4,5 +4,3 @@ vim.cmd([[
     endfunction
     let g:mkdp_browserfunc = 'OpenMarkdownPreview'
 ]])
-
-

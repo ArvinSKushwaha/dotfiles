@@ -1,1 +1,1 @@
-local builtin = require('telescope.builtin')
+local builtin = require("telescope.builtin")
