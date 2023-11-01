@@ -24,24 +24,36 @@ return require("lazy").setup({
 	"hrsh7th/cmp-nvim-lua",
 	"hrsh7th/cmp-omni",
 	"hrsh7th/nvim-cmp",
-    "iago-lito/vim-visualMarks",
+	"iago-lito/vim-visualMarks",
 	"jay-babu/mason-nvim-dap.nvim",
-	"jose-elias-alvarez/null-ls.nvim",
 	"lervag/vimtex",
 	"mbbill/undotree",
 	"mfussenegger/nvim-dap",
 	"mg979/vim-visual-multi",
 	"nanotee/zoxide.vim",
 	"neovim/nvim-lspconfig",
-    "nvim-tree/nvim-web-devicons",
+	"nvim-tree/nvim-web-devicons",
 	"saadparwaiz1/cmp_luasnip",
 	"simrat39/rust-tools.nvim",
-    "stevearc/oil.nvim",
+	"stevearc/oil.nvim",
 	"tpope/vim-fugitive",
-    "williamboman/mason.nvim",
+	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"wsdjeg/vim-fetch",
-    "nvim-treesitter/nvim-treesitter-textobjects",
+	"nvim-treesitter/nvim-treesitter-textobjects",
+	{
+		"creativenull/efmls-configs-nvim",
+		version = "v1.x.x", -- version is optional, but recommended
+		dependencies = { "neovim/nvim-lspconfig" },
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {}, -- this is equalent to setup({}) function
+		config = function()
+			require("nvim-autopairs").setup({ disable_filetype = { "TelescopePrompt", "tex" } })
+		end,
+	},
 	{
 		"L3MON4D3/LuaSnip",
 		build = [[make install_jsregexp]],
@@ -51,19 +63,11 @@ return require("lazy").setup({
 		build = [[rustup default stable; make]],
 	},
 	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"jose-elias-alvarez/null-ls.nvim",
-		},
-	},
-	{
 		"iamcco/markdown-preview.nvim",
 		ft = "markdown",
 		lazy = true,
 		cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
-        build = [[cd app && npm install && git reset --hard]],
+		build = [[cd app && npm install && git reset --hard]],
 	},
 	{ "catppuccin/nvim", name = "catppuccin" },
 	{
@@ -80,18 +84,18 @@ return require("lazy").setup({
 	{
 		"kylechui/nvim-surround",
 		version = "*", -- for stability; omit to use `main` branch for the latest features
-        event = "VeryLazy",
+		event = "VeryLazy",
 		config = function()
 			require("nvim-surround").setup({})
 		end,
 	},
 	{
 		"smoka7/hop.nvim",
-        version = "*",
+		version = "*",
 		config = function()
 			require("hop").setup({ keys = "arseioqwfpbjluyxcdvzkh" })
 		end,
-    },
+	},
 	{
 		"j-hui/fidget.nvim",
 		branch = "legacy",

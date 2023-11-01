@@ -19,6 +19,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "<space>e", vim.diagnostic.open_float, opts)
 		map("n", "[d", vim.diagnostic.goto_prev, opts)
 		map("n", "]d", vim.diagnostic.goto_next, opts)
+		map("n", "[)", vim.diagnostic.goto_prev, opts)
+		map("n", "])", vim.diagnostic.goto_next, opts)
 		map("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 		map("n", "gD", vim.lsp.buf.declaration, opts)
@@ -61,9 +63,36 @@ function copy1(obj)
 	return res
 end
 
+local yapf = require("efmls-configs.formatters.yapf")
+local stylua = require("efmls-configs.formatters.stylua")
+
+local languages = {
+	python = { yapf },
+	lua = { stylua },
+}
+
+local efmls_config = {
+	filetypes = vim.tbl_keys(languages),
+	autostart = true,
+	settings = {
+		rootMarkers = { ".git/" },
+		languages = languages,
+	},
+	init_options = {
+		documentFormatting = true,
+		documentRangeFormatting = true,
+	},
+}
+
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
 		require("lspconfig")[server_name].setup(copy1(default_settings))
+	end,
+
+	["efm"] = function()
+		local settings = vim.tbl_extend("keep", efmls_config, copy1(default_settings))
+		-- print(vim.inspect(settings))
+		require("lspconfig")["efm"].setup(settings)
 	end,
 
 	["rust_analyzer"] = function()
@@ -111,12 +140,5 @@ require("mason-lspconfig").setup_handlers({
 require("mason-nvim-dap").setup({
 	automatic_setup = true,
 })
-require("null-ls").setup({
-	debug = true,
-})
-require("mason-null-ls").setup({
-	automatic_setup = true,
-	automatic_installation = true,
-	handlers = {},
-})
+
 require("crates").setup()

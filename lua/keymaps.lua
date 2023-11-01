@@ -10,6 +10,8 @@ map("n", "<leader>wf", ":q<CR>", {})
 map("n", "<leader>wq", ":qa<CR>", {})
 map("n", "<leader>wQ", ":qa!<CR>", {})
 map("n", "<leader>p", '"0p', {})
+map("n", "<C-s>", ':w<CR>', {})
+map("n", "<C-S>", ':w!<CR>', {})
 
 ----------------
 --[[ Motion ]]
