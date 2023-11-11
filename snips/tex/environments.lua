@@ -129,9 +129,9 @@ return {
 		{ trig = "tq", snippetType = "autosnippet" },
 		fmta(
 			[[
-            \begin{equation*}
+            \begin{equation}
                 <>
-            \end{equation*}
+            \end{equation}
             ]],
 			{ i(1) }
 		),

@@ -235,6 +235,20 @@ return {
 		end) }),
 		{ condition = helpers.in_mathzone }
 	),
+    s(
+        { trig = "([\\A-Za-z]+)dif", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+        fmta("\\odif{<>}", { f(function(args, parents, user_args)
+            return parents.captures[1]
+        end) }),
+        { condition = helpers.in_mathzone }
+    ),
+	s(
+		{ trig = "([\\A-Za-z{}]+)'dif", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\odif{<>}", { f(function(args, parents, user_args)
+			return parents.captures[1]
+		end) }),
+		{ condition = helpers.in_mathzone }
+	),
 	s(
 		{ trig = "mpt", snippetType = "autosnippet" },
 		fmta("\\mappingto{<>}{<>}{<>}", { i(1), i(2), i(3) }),
