@@ -19,8 +19,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "<space>e", vim.diagnostic.open_float, opts)
 		map("n", "[d", vim.diagnostic.goto_prev, opts)
 		map("n", "]d", vim.diagnostic.goto_next, opts)
-		map("n", "[)", vim.diagnostic.goto_prev, opts)
-		map("n", "])", vim.diagnostic.goto_next, opts)
+		map("n", ")(", vim.diagnostic.goto_prev, opts)
+		map("n", "()", vim.diagnostic.goto_next, opts)
 		map("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 		map("n", "gD", vim.lsp.buf.declaration, opts)
@@ -65,10 +65,12 @@ end
 
 local yapf = require("efmls-configs.formatters.yapf")
 local stylua = require("efmls-configs.formatters.stylua")
+local jq = require("efmls-configs.formatters.jq")
 
 local languages = {
 	python = { yapf },
 	lua = { stylua },
+	json = { jq },
 }
 
 local efmls_config = {
@@ -91,7 +93,6 @@ require("mason-lspconfig").setup_handlers({
 
 	["efm"] = function()
 		local settings = vim.tbl_extend("keep", efmls_config, copy1(default_settings))
-		-- print(vim.inspect(settings))
 		require("lspconfig")["efm"].setup(settings)
 	end,
 

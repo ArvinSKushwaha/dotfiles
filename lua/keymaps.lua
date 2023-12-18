@@ -10,8 +10,8 @@ map("n", "<leader>wf", ":q<CR>", {})
 map("n", "<leader>wq", ":qa<CR>", {})
 map("n", "<leader>wQ", ":qa!<CR>", {})
 map("n", "<leader>p", '"0p', {})
-map("n", "<C-s>", ':w<CR>', {})
-map("n", "<C-S>", ':w!<CR>', {})
+map("n", "<C-s>", ":w<CR>", {})
+map("n", "<C-S>", ":w!<CR>", {})
 
 ----------------
 --[[ Motion ]]
@@ -137,3 +137,12 @@ map("n", "<leader>v", function()
 		vim.cmd("MarkdownPreviewToggle")
 	end
 end, { noremap = true })
+
+----------------------
+--[[ MultiCursor ]]
+--
+----------------------
+
+map("n", "<C-A-i>", ":call vm#commands#add_cursor_up(0, v:count1)<cr>", { noremap = true, silent = true })
+
+map("n", "<C-A-e>", ":call vm#commands#add_cursor_down(0, v:count1)<cr>", { noremap = true, silent = true })

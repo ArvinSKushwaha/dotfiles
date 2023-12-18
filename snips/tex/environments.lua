@@ -264,12 +264,13 @@ return {
 		wordTrig = false,
 	}, fmta("<>", { d(1, matrix_handler) }), { condition = helpers.in_mathzone }),
 	s(
-		{ trig = "pkg" },
+		{ trig = "pkg", snippetType = "autosnippet" },
 		fmta(
 			[[
             \usepackage[<>]{<>}
             ]],
 			{ i(2), i(1) }
-		)
+		),
+		{ condition = conds_expand.line_begin * helpers.in_text * -helpers.in_env("document") }
 	),
 }

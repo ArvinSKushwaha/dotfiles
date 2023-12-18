@@ -11,7 +11,6 @@ luasnip.config.set_config({
 	region_check_events = "CursorMoved,CursorHold,InsertEnter",
 })
 
-require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snips" })
 
 local has_words_before = function()
@@ -79,7 +78,7 @@ cmp.setup({
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+		["<C-l>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 		["<C-e>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
@@ -90,7 +89,7 @@ cmp.setup({
 		["<CR>"] = cmp.mapping({
 			i = function(fallback)
 				if cmp.visible() and cmp.get_active_entry() then
-					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
 				else
 					fallback()
 				end
@@ -101,9 +100,6 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-
-			-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-			-- they way you will only jump inside the snippet region
 			elseif luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			elseif has_words_before() then
@@ -132,21 +128,22 @@ cmp.setup({
 	}),
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
-		select = true,
+		select = false,
 	},
-	-- experimental = {
-	-- 	ghost_text = true,
-	-- 	native_menu = false,
-	-- },
+	experimental = {
+		ghost_text = true,
+		-- native_menu = false,
+	},
+	preselect = require("cmp").PreselectMode.None,
 })
 
 cmp.setup.filetype({ "tex" }, {
-	-- experimental = {
-	-- 	ghost_text = true,
-	-- 	native_menu = false,
-	-- },
+	experimental = {
+		ghost_text = true,
+		-- 	native_menu = false,
+	},
 	completion = {
-		autocomplete = false,
+		autocomplete = true,
 	},
 	formatting = {
 		format = function(entry, vim_item)
@@ -164,4 +161,5 @@ cmp.setup.filetype({ "tex" }, {
 		{ name = "luasnip" },
 		{ name = "async_path" },
 	},
+	preselect = require("cmp").PreselectMode.None,
 })

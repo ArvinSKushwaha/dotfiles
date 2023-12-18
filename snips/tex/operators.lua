@@ -32,11 +32,6 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "'if", snippetType = "autosnippet", wordTrig = false },
-		fmta("\\leftrightarrow", {}),
-		{ condition = helpers.in_mathzone }
-	),
-	s(
 		{ trig = "<-", snippetType = "autosnippet", wordTrig = false },
 		fmta("\\leftarrow", {}),
 		{ condition = helpers.in_mathzone }
@@ -52,7 +47,7 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "'If", snippetType = "autosnippet" },
+		{ trig = "'if", snippetType = "autosnippet" },
 		fmta("\\Longleftrightarrow", {}),
 		{ condition = helpers.in_mathzone }
 	),
@@ -134,6 +129,31 @@ return {
 	s(
 		{ trig = "'bpl", snippetType = "autosnippet", wordTrig = false },
 		fmta("\\bigoplus", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'ne", snippetType = "autosnippet", wordTrig = false },
+		fmta("\\neg", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'we", snippetType = "autosnippet", wordTrig = false },
+		fmta("\\wedge", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'ve", snippetType = "autosnippet", wordTrig = false },
+		fmta("\\vee", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'bwe", snippetType = "autosnippet", wordTrig = false },
+		fmta("\\bigwedge", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'bve", snippetType = "autosnippet", wordTrig = false },
+		fmta("\\bigvee", {}),
 		{ condition = helpers.in_mathzone }
 	),
 	s(

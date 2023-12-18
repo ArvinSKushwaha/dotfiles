@@ -12,7 +12,7 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "'ve", snippetType = "autosnippet", wordTrig = false },
+		{ trig = "'vae", snippetType = "autosnippet", wordTrig = false },
 		fmta("\\varepsilon", {}),
 		{ condition = helpers.in_mathzone }
 	),
@@ -27,7 +27,7 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "'vp", snippetType = "autosnippet", wordTrig = false },
+		{ trig = "'vap", snippetType = "autosnippet", wordTrig = false },
 		fmta("\\varphi", {}),
 		{ condition = helpers.in_mathzone }
 	),
@@ -97,6 +97,16 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
+		{ trig = "'et", snippetType = "autosnippet", wordTrig = false },
+		fmta(" \\eta", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'Et", snippetType = "autosnippet", wordTrig = false },
+		fmta(" \\Eta", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
 		{ trig = "'th", snippetType = "autosnippet", wordTrig = false },
 		fmta(" \\theta", {}),
 		{ condition = helpers.in_mathzone }
@@ -162,7 +172,7 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "'vs", snippetType = "autosnippet", wordTrig = false },
+		{ trig = "'vas", snippetType = "autosnippet", wordTrig = false },
 		fmta(" \\varsigma", {}),
 		{ condition = helpers.in_mathzone }
 	),
@@ -173,7 +183,7 @@ return {
 	),
 	s(
 		{ trig = "'na", snippetType = "autosnippet", wordTrig = false },
-		fmta(" \\del ", {}),
+		fmta(" \\del", {}),
 		{ condition = helpers.in_mathzone }
 	),
 	s(

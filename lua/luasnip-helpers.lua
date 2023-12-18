@@ -60,7 +60,6 @@ end
 
 -- A few concrete environments---adapt as needed
 helpers.in_equation = helpers.in_env("equation")
-helpers.in_multiproblem = helpers.in_env("multiproblem")
 helpers.in_itemize = helpers.in_env("itemize")
 helpers.in_tikz = helpers.in_env("tikzpicture")
 
