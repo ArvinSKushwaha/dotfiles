@@ -27,6 +27,7 @@ return require("lazy").setup({
 	"iago-lito/vim-visualMarks",
 	"jay-babu/mason-nvim-dap.nvim",
 	"lervag/vimtex",
+    "luckasRanarison/tree-sitter-hyprlang",
 	"mbbill/undotree",
 	"mfussenegger/nvim-dap",
 	"mg979/vim-visual-multi",

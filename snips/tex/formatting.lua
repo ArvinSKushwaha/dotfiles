@@ -178,7 +178,7 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([A-Za-z0-9]?)'df", regTrig = true, snippetType = "autosnippet" },
+		{ trig = "([A-Za-z0-9]?)'dx", regTrig = true, snippetType = "autosnippet" },
 		fmta("\\odv<>{<>}{<>}", {
 			f(function(args, parents, user_args)
 				if #parents.captures[1] > 0 then
@@ -193,7 +193,7 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([A-Za-z0-9]?)'pf", regTrig = true, snippetType = "autosnippet" },
+		{ trig = "([A-Za-z0-9]?)'px", regTrig = true, snippetType = "autosnippet" },
 		fmta("\\pdv<>{<>}{<>}", {
 			f(function(args, parents, user_args)
 				if #parents.captures[1] > 0 then
@@ -215,35 +215,35 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([\\A-Za-z{}0-9]+)'vc", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		{ trig = "([\\A-Za-z{}0-9']+)'vc", regTrig = true, snippetType = "autosnippet", wordTrig = false },
 		fmta("\\vec{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([\\A-Za-z0-9]+)hat", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		{ trig = "([\\A-Za-z0-9']+)hat", regTrig = true, snippetType = "autosnippet", wordTrig = false },
 		fmta("\\hat{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([\\A-Za-z{}0-9]+)'ht", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		{ trig = "([\\A-Za-z{}0-9']+)'ht", regTrig = true, snippetType = "autosnippet", wordTrig = false },
 		fmta("\\hat{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([\\A-Za-z0-9]+)bar", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		{ trig = "([\\A-Za-z0-9']+)bar", regTrig = true, snippetType = "autosnippet", wordTrig = false },
 		fmta("\\overline{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([\\A-Za-z{}0-9]+)'br", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		{ trig = "([\\A-Za-z{}0-9']+)'br", regTrig = true, snippetType = "autosnippet", wordTrig = false },
 		fmta("\\overline{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
@@ -257,7 +257,7 @@ return {
         { condition = helpers.in_mathzone }
     ),
 	s(
-		{ trig = "([\\A-Za-z{}]+)'dif", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		{ trig = "([\\A-Za-z{}']+)'df", regTrig = true, snippetType = "autosnippet", wordTrig = false },
 		fmta("\\odif{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),

@@ -1,4 +1,13 @@
-require("catppuccin").setup({})
+require("catppuccin").setup({
+	flavor = "mocha",
+	transparent_background = true,
+	custom_highlights = function(colors)
+		return {
+			-- Comment = { fg = colors.flamingo },
+			-- TabLineSel = { bg = colors.pink },
+		}
+	end,
+})
 
 vim.cmd.colorscheme("catppuccin")
 

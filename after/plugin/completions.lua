@@ -73,7 +73,10 @@ cmp.setup({
 			return vim_item
 		end,
 	},
-	window = {},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
 	mapping = {
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
@@ -142,8 +145,12 @@ cmp.setup.filetype({ "tex" }, {
 		ghost_text = true,
 		-- 	native_menu = false,
 	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
 	completion = {
-		autocomplete = true,
+		autocomplete = {},
 	},
 	formatting = {
 		format = function(entry, vim_item)

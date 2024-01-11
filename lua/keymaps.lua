@@ -138,9 +138,14 @@ map("n", "<leader>v", function()
 	end
 end, { noremap = true })
 
+map("n", "<tab>", function()
+	if vim.bo.filetype == "tex" or vim.bo.filetype == "latex" then
+		vim.cmd("VimtexTocToggle")
+    end
+end, { noremap = true })
+
 ----------------------
 --[[ MultiCursor ]]
---
 ----------------------
 
 map("n", "<C-A-i>", ":call vm#commands#add_cursor_up(0, v:count1)<cr>", { noremap = true, silent = true })
