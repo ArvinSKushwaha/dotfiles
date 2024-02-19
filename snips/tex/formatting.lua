@@ -7,6 +7,11 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
+		{ trig = ".rs", snippetType = "autosnippet", wordTrig = false },
+		fmta("<>\\) <> \\(<>", { t(" "), i(1), t(" ") }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
 		{ trig = "fd", snippetType = "autosnippet" },
 		fmta("\\underline{<>}", { d(1, helpers.get_visual) }),
 		{ condition = helpers.in_text }
@@ -169,7 +174,7 @@ return {
 	),
 	s(
 		{ trig = "dnt", snippetType = "autosnippet" },
-		fmta([[\int<> <> \odif{<>}]], { i(2), i(1), i(3, "x") }),
+		fmta([[\int<> <> \dd{<>}]], { i(2), i(1), i(3, "x") }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
@@ -179,10 +184,10 @@ return {
 	),
 	s(
 		{ trig = "([A-Za-z0-9]?)'dx", regTrig = true, snippetType = "autosnippet" },
-		fmta("\\odv<>{<>}{<>}", {
+		fmta("\\dv<>{<>}{<>}", {
 			f(function(args, parents, user_args)
 				if #parents.captures[1] > 0 then
-					return "[ord=" .. parents.captures[1] .. "]"
+					return "[" .. parents.captures[1] .. "]"
 				else
 					return ""
 				end
@@ -197,7 +202,22 @@ return {
 		fmta("\\pdv<>{<>}{<>}", {
 			f(function(args, parents, user_args)
 				if #parents.captures[1] > 0 then
-					return "[ord=" .. parents.captures[1] .. "]"
+					return "[" .. parents.captures[1] .. "]"
+				else
+					return ""
+				end
+			end),
+			i(1),
+			i(2),
+		}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "([A-Za-z0-9]?)'fx", regTrig = true, snippetType = "autosnippet" },
+		fmta("\\fdv<>{<>}{<>}", {
+			f(function(args, parents, user_args)
+				if #parents.captures[1] > 0 then
+					return "[" .. parents.captures[1] .. "]"
 				else
 					return ""
 				end
@@ -237,28 +257,77 @@ return {
 	),
 	s(
 		{ trig = "([\\A-Za-z0-9']+)bar", regTrig = true, snippetType = "autosnippet", wordTrig = false },
-		fmta("\\overline{<>}", { f(function(args, parents, user_args)
+		fmta("\\bar{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
 		{ trig = "([\\A-Za-z{}0-9']+)'br", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\bar{<>}", { f(function(args, parents, user_args)
+			return parents.captures[1]
+		end) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "([\\A-Za-z0-9']+)ovr", regTrig = true, snippetType = "autosnippet", wordTrig = false },
 		fmta("\\overline{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
 		{ condition = helpers.in_mathzone }
 	),
-    s(
-        { trig = "([\\A-Za-z]+)dif", regTrig = true, snippetType = "autosnippet", wordTrig = false },
-        fmta("\\odif{<>}", { f(function(args, parents, user_args)
-            return parents.captures[1]
-        end) }),
-        { condition = helpers.in_mathzone }
-    ),
+	s(
+		{ trig = "([\\A-Za-z{}0-9']+)'vr", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\overline{<>}", { f(function(args, parents, user_args)
+			return parents.captures[1]
+		end) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "([\\A-Za-z0-9']+)tld", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\tilde{<>}", { f(function(args, parents, user_args)
+			return parents.captures[1]
+		end) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "([\\A-Za-z{}0-9']+)'tld", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\tilde{<>}", { f(function(args, parents, user_args)
+			return parents.captures[1]
+		end) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "([\\A-Za-z]+)dif", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\dd{<>}", { f(function(args, parents, user_args)
+			return parents.captures[1]
+		end) }),
+		{ condition = helpers.in_mathzone }
+	),
 	s(
 		{ trig = "([\\A-Za-z{}']+)'df", regTrig = true, snippetType = "autosnippet", wordTrig = false },
-		fmta("\\odif{<>}", { f(function(args, parents, user_args)
+		fmta("\\dd{<>}", { f(function(args, parents, user_args)
+			return parents.captures[1]
+		end) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "([\\A-Za-z]+)pif", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\ptl{<>}", { f(function(args, parents, user_args)
+			return parents.captures[1]
+		end) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "([\\A-Za-z{}']+)'pf", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\ptl{<>}", { f(function(args, parents, user_args)
+			return parents.captures[1]
+		end) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "([\\A-Za-z{}']+)'ev", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\eval{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
 		{ condition = helpers.in_mathzone }
@@ -274,8 +343,15 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
+		{ trig = "'xp", snippetType = "autosnippet", wordTrig = false },
+		fmta("\\expval{<>}", { i(1) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
 		{ trig = ' "', snippetType = "autosnippet", wordTrig = false },
 		fmta("<>``<>''", { t(" "), i(1) }),
 		{ condition = helpers.in_text }
 	),
+	s({ trig = "qq", snippetType = "autosnippet" }, fmta("\\quad", {}), { condition = helpers.in_mathzone }),
+	s({ trig = "QQ", snippetType = "autosnippet" }, fmta("\\qquad", {}), { condition = helpers.in_mathzone }),
 }

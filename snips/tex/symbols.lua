@@ -82,6 +82,11 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
+		{ trig = "'ka", snippetType = "autosnippet", wordTrig = false },
+		fmta(" \\kappa", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
 		{ trig = "'rh", snippetType = "autosnippet", wordTrig = false },
 		fmta(" \\rho", {}),
 		{ condition = helpers.in_mathzone }
@@ -184,6 +189,16 @@ return {
 	s(
 		{ trig = "'na", snippetType = "autosnippet", wordTrig = false },
 		fmta(" \\del", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'im", snippetType = "autosnippet", wordTrig = false },
+		fmta(" \\imath", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'jm", snippetType = "autosnippet", wordTrig = false },
+		fmta(" \\jmath", {}),
 		{ condition = helpers.in_mathzone }
 	),
 	s(

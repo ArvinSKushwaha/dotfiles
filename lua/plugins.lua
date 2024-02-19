@@ -27,7 +27,6 @@ return require("lazy").setup({
 	"iago-lito/vim-visualMarks",
 	"jay-babu/mason-nvim-dap.nvim",
 	"lervag/vimtex",
-    "luckasRanarison/tree-sitter-hyprlang",
 	"mbbill/undotree",
 	"mfussenegger/nvim-dap",
 	"mg979/vim-visual-multi",
@@ -35,7 +34,6 @@ return require("lazy").setup({
 	"neovim/nvim-lspconfig",
 	"nvim-tree/nvim-web-devicons",
 	"saadparwaiz1/cmp_luasnip",
-	"simrat39/rust-tools.nvim",
 	"stevearc/oil.nvim",
 	"tpope/vim-fugitive",
 	"williamboman/mason.nvim",
@@ -52,7 +50,7 @@ return require("lazy").setup({
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
 		config = function()
-			require("nvim-autopairs").setup({ disable_filetype = { "TelescopePrompt", "tex" } })
+            require("nvim-autopairs").setup({ disable_filetype = { "TelescopePrompt", "tex" } })
 		end,
 	},
 	{
@@ -110,6 +108,11 @@ return require("lazy").setup({
 		config = function()
 			require("todo-comments").setup({})
 		end,
+	},
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^3",
+		ft = { "rust" },
 	},
 	{
 		"nvim-telescope/telescope.nvim",

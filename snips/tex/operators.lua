@@ -87,13 +87,13 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "'sum", snippetType = "autosnippet", wordTrig = false },
-		fmta("\\sum", {}),
+		{ trig = "~=", snippetType = "autosnippet", wordTrig = false },
+		fmta("\\approx", {}),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "'xp", snippetType = "autosnippet", wordTrig = false },
-		fmta("\\exp", {}),
+		{ trig = "'sum", snippetType = "autosnippet", wordTrig = false },
+		fmta("\\sum", {}),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
@@ -202,8 +202,23 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
+		{ trig = "gre", snippetType = "autosnippet", wordTrig = true },
+		fmta("\\Re{<>}", { i(1) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "gim", snippetType = "autosnippet", wordTrig = true },
+		fmta("\\Im{<>}", { i(1) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
 		{ trig = "giU", snippetType = "autosnippet", wordTrig = true },
 		fmta("\\bigcup", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = " 'ev", snippetType = "autosnippet", wordTrig = false },
+		fmta("<>\\eval{<>}", { t(" "), i(1) }),
 		{ condition = helpers.in_mathzone }
 	),
 }

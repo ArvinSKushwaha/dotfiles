@@ -1,6 +1,6 @@
 require("catppuccin").setup({
 	flavor = "mocha",
-	transparent_background = true,
+	-- transparent_background = true,
 	custom_highlights = function(colors)
 		return {
 			-- Comment = { fg = colors.flamingo },
