@@ -3,10 +3,15 @@ require("catppuccin").setup({
 	-- transparent_background = true,
 	custom_highlights = function(colors)
 		return {
-			-- Comment = { fg = colors.flamingo },
+			Comment = { fg = colors.overlay0 },
+			DiagnosticUnnecessary = { fg = colors.overlay0 },
 			-- TabLineSel = { bg = colors.pink },
 		}
 	end,
+    integrations = {
+        fidget = true,
+        hop = true,
+    }
 })
 
 vim.cmd.colorscheme("catppuccin")

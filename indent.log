@@ -1,0 +1,25 @@
+INFO:  latexindent version 3.24.1, 2024-05-12, a script to indent .tex files
+       latexindent lives here: /home/creme_brulee/.local/bin/
+       Tue Jun  4 21:06:25 2024
+       Reading input from STDIN
+INFO:  Processing switches:
+INFO:  Directory for backup files and log file indent.log:
+       .
+INFO:  YAML settings read: defaultSettings.yaml
+       Reading defaultSettings.yaml from /home/creme_brulee/.local/bin/defaultSettings.yaml
+       Reading defaultSettings.yaml (2nd attempt) from /home/creme_brulee/.local/bin/../../texmf-dist/scripts/latexindent/defaultSettings.yaml
+       and then, if necessary, /home/creme_brulee/.local/bin/LatexIndent/defaultSettings.yaml
+INFO:  YAML reading settings
+       Home directory is /home/creme_brulee
+       latexindent.pl didn't find indentconfig.yaml or .indentconfig.yaml
+       see all possible locations: https://latexindentpl.readthedocs.io/en/latest/sec-appendices.html#indentconfig-options)
+INFO:  Phase 1: searching for objects
+       No objects found.
+INFO:  Phase 2: finding surrounding indentation
+INFO:  Phase 3: indenting objects
+INFO:  Phase 4: final indentation check
+INFO:  Output routine:
+       Not outputting to file; see -w and -o switches for more options.
+       --------------
+INFO:  Please direct all communication/issues to:
+        https://github.com/cmhughes/latexindent.pl

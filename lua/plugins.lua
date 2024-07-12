@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -14,8 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 return require("lazy").setup({
 	"andymass/vim-matchup",
 	"axvr/zepl.vim",
-	"feline-nvim/feline.nvim",
-	"FelipeLema/cmp-async-path",
+	"freddiehaddad/feline.nvim",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-cmdline",
 	"hrsh7th/cmp-nvim-lsp",
@@ -23,6 +22,7 @@ return require("lazy").setup({
 	"hrsh7th/cmp-nvim-lsp-signature-help",
 	"hrsh7th/cmp-nvim-lua",
 	"hrsh7th/cmp-omni",
+	"hrsh7th/cmp-path",
 	"hrsh7th/nvim-cmp",
 	"iago-lito/vim-visualMarks",
 	"jay-babu/mason-nvim-dap.nvim",
@@ -33,25 +33,24 @@ return require("lazy").setup({
 	"nanotee/zoxide.vim",
 	"neovim/nvim-lspconfig",
 	"nvim-tree/nvim-web-devicons",
+	"p00f/clangd_extensions.nvim",
 	"saadparwaiz1/cmp_luasnip",
 	"stevearc/oil.nvim",
+	"stevearc/conform.nvim",
 	"tpope/vim-fugitive",
+	"tpope/vim-abolish",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"wsdjeg/vim-fetch",
 	"nvim-treesitter/nvim-treesitter-textobjects",
-	{
-		"creativenull/efmls-configs-nvim",
-		version = "v1.x.x", -- version is optional, but recommended
-		dependencies = { "neovim/nvim-lspconfig" },
-	},
+	"Bilal2453/luvit-meta",
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		opts = {}, -- this is equalent to setup({}) function
-		config = function()
-            require("nvim-autopairs").setup({ disable_filetype = { "TelescopePrompt", "tex" } })
-		end,
+		opts = { disable_filetype = { "TelescopePrompt", "tex" } },
+		-- config = function()
+		-- 	require("nvim-autopairs").setup()
+		-- end,
 	},
 	{
 		"L3MON4D3/LuaSnip",
@@ -62,7 +61,7 @@ return require("lazy").setup({
 		build = [[rustup default stable; make]],
 	},
 	{
-		"iamcco/markdown-preview.nvim",
+		"ArvinSKushwaha/markdown-preview.nvim",
 		ft = "markdown",
 		lazy = true,
 		cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
@@ -76,54 +75,71 @@ return require("lazy").setup({
 	},
 	{
 		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
+		opts = {},
+		-- config = function()
+		-- 	require("Comment").setup()
+		-- end,
 	},
 	{
 		"kylechui/nvim-surround",
 		version = "*", -- for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
+		opts = {},
+		-- config = function()
+		-- 	require("nvim-surround").setup({})
+		-- end,
 	},
 	{
 		"smoka7/hop.nvim",
 		version = "*",
-		config = function()
-			require("hop").setup({ keys = "arseioqwfpbjluyxcdvzkh" })
-		end,
+		opts = { keys = "arseioqwfpbjluyxcdvzkh", multi_windows = true, uppercase_labels = true },
+		-- config = function()
+		-- 	require("hop").setup({ keys = "arseioqwfpbjluyxcdvzkh" })
+		-- end,
 	},
 	{
 		"j-hui/fidget.nvim",
-		branch = "legacy",
-		config = function()
-			require("fidget").setup({})
-		end,
+		tag = "v1.4.5",
+		opts = { notification = { window = { winblend = 0 } } },
+		-- config = function()
+		-- 	require("fidget").setup({
+		-- 		notification = {
+		-- 			window = {
+		-- 				winblend = 0,
+		-- 			},
+		-- 		},
+		-- 	})
+		-- end,
 	},
 	{
 		"folke/todo-comments.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
-		config = function()
-			require("todo-comments").setup({})
-		end,
+		opts = {},
+		-- config = function()
+		-- 	require("todo-comments").setup({})
+		-- end,
+	},
+	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+		},
 	},
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^3",
+		version = "^4",
 		ft = { "rust" },
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		version = "0.1.4",
-		dependencies = { { "nvim-lua/plenary.nvim" } },
+		version = "0.1.7",
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	-- {
-	-- 	"nvim-tree/nvim-tree.lua",
-	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- 	version = "nightly", -- optional, updated every week. (see issue #1193)
-	-- },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = function()
@@ -131,4 +147,29 @@ return require("lazy").setup({
 		end,
 	},
 	{ "dccsillag/magma-nvim", build = ":UpdateRemotePlugins" },
+	{
+		"Julian/lean.nvim",
+		event = { "BufReadPre *.lean", "BufNewFile *.lean" },
+		opts = {
+			mappings = true,
+		},
+	},
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*",
+		lazy = true,
+		ft = "markdown",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			workspaces = {
+				{
+					name = "arvim",
+					path = "~/Nextcloud/arvim/",
+				},
+			},
+            log_level = vim.log.levels.WARN,
+		},
+	},
 })

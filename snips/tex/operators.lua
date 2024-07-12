@@ -3,16 +3,16 @@ local helpers = require("luasnip-helpers")
 return {
 	s(
 		{ trig = "+-", snippetType = "autosnippet", wordTrig = false },
-		fmta("\\pm ", {}),
+		fmta("\\pm", {}),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
 		{ trig = "-+", snippetType = "autosnippet", wordTrig = false },
-		fmta("\\mp ", {}),
+		fmta("\\mp", {}),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "|->", snippetType = "autosnippet", wordTrig = false },
+		{ trig = ">-", snippetType = "autosnippet", wordTrig = false },
 		fmta("\\mapsto", {}),
 		{ condition = helpers.in_mathzone }
 	),

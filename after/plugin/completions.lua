@@ -11,7 +11,7 @@ luasnip.config.set_config({
 	region_check_events = "CursorMoved,CursorHold,InsertEnter",
 })
 
-require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snips" })
+require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snips" } })
 
 local has_words_before = function()
 	unpack = unpack or table.unpack
@@ -89,46 +89,91 @@ cmp.setup({
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		-- ["<CR>"] = cmp.mapping.confirm { select = false },
-		["<CR>"] = cmp.mapping({
-			i = function(fallback)
-				if cmp.visible() and cmp.get_active_entry() then
-					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+		["<CR>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				if luasnip.expandable() then
+					luasnip.expand()
 				else
-					fallback()
+					cmp.confirm({
+						select = true,
+					})
 				end
-			end,
-			s = cmp.mapping.confirm({ select = true }),
-			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-		}),
+			else
+				fallback()
+			end
+		end),
+
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_locally_jumpable() then
-				luasnip.expand_or_jump()
-			elseif has_words_before() then
-				cmp.complete()
+			elseif luasnip.locally_jumpable(1) then
+				luasnip.jump(1)
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
+
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
+			elseif luasnip.locally_jumpable(-1) then
 				luasnip.jump(-1)
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
+		-- ["<CR>"] = cmp.mapping({
+		--     i = function(fallback)
+		--         if cmp.visible() and cmp.get_active_entry() then
+		--             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+		--         else
+		--             fallback()
+		--         end
+		--     end,
+		--     s = cmp.mapping.confirm({ select = true }),
+		--     c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+		-- }),
+		-- ["<Tab>"] = cmp.mapping(function(fallback)
+		--     if cmp.visible() then
+		--         cmp.select_next_item()
+		--     elseif luasnip.expand_or_locally_jumpable() then
+		--         luasnip.expand_or_jump()
+		--     elseif has_words_before() then
+		--         cmp.complete()
+		--     else
+		--         fallback()
+		--     end
+		-- end, { "i", "s" }),
+		-- ["<S-Tab>"] = cmp.mapping(function(fallback)
+		--     if cmp.visible() then
+		--         cmp.select_prev_item()
+		--     elseif luasnip.jumpable(-1) then
+		--         luasnip.jump(-1)
+		--     else
+		--         fallback()
+		--     end
+		-- end, { "i", "s" }),
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
-		{ name = "async_path" },
+		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "crates" },
 		{ name = "buffer" },
 	}),
+	sorting = {
+		comparators = {
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.recently_used,
+			require("clangd_extensions.cmp_scores"),
+			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
+	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
@@ -166,7 +211,7 @@ cmp.setup.filetype({ "tex" }, {
 		{ name = "omni" },
 		{ name = "buffer" },
 		{ name = "luasnip" },
-		{ name = "async_path" },
+		{ name = "path" },
 	},
 	preselect = require("cmp").PreselectMode.None,
 })

@@ -148,9 +148,9 @@ return {
 			[[
             \[
                 <>
-            .\]
+            <>\]
         ]],
-			{ d(1, helpers.get_visual) }
+			{ d(1, helpers.get_visual), i(2) }
 		),
 		{ condition = helpers.in_text * conds_expand.line_begin }
 	),
@@ -162,7 +162,7 @@ return {
                 <>
             \end{<>}
         ]],
-			{ i(1), i(0), rep(1) }
+			{ i(1), i(2), rep(1) }
 		)
 	),
 	s(
@@ -181,11 +181,11 @@ return {
 		{ trig = "dnm", snippetType = "autosnippet" },
 		fmta(
 			[[
-            \begin{enumerate}
+            \begin{enumerate}<>
                 <>
             \end{enumerate}
         ]],
-			{ i(1) }
+			{ i(1), i(2) }
 		),
 		{ condition = helpers.in_text }
 	),
@@ -193,29 +193,55 @@ return {
 		{ trig = "dkz", snippetType = "autosnippet" },
 		fmta(
 			[[
-            \begin{figure}
+            \begin{figure}[<>]
                 \centering
                 \begin{tikzpicture}
                     <>
                 \end{tikzpicture}
             \end{figure}
         ]],
-			{ i(1) }
-		)
+			{ i(2), i(1) }
+		),
+		{ condition = helpers.in_text }
 	),
 	s(
 		{ trig = "dimg", snippetType = "autosnippet" },
 		fmta(
 			[[
-            \begin{figure}
+            \begin{figure}[<>]
                 \centering
                 \includegraphics[<>]{<>}
                 \caption{<>}
                 \label{<>}
             \end{figure}
         ]],
-			{ i(2), i(1), i(3), i(4) }
-		)
+			{ i(5), i(2), i(1), i(3), i(4) }
+		),
+		{ condition = helpers.in_text }
+	),
+	s(
+		{ trig = "dfn", snippetType = "autosnippet" },
+		fmta(
+			[[
+            \begin{definition}[<>]
+                <>
+            \end{definition}
+        ]],
+			{ i(1), i(2) }
+		),
+		{ condition = helpers.in_text * conds_expand.line_begin }
+	),
+	s(
+		{ trig = "dth", snippetType = "autosnippet" },
+		fmta(
+			[[
+            \begin{theorem}
+                <>
+            \end{theorem}
+        ]],
+			{ i(1) }
+		),
+		{ condition = helpers.in_text }
 	),
 	s(
 		{ trig = "!xp", snippetType = "autosnippet" },
@@ -270,6 +296,30 @@ return {
             \usepackage[<>]{<>}
             ]],
 			{ i(2), i(1) }
+		),
+		{ condition = conds_expand.line_begin * helpers.in_text * -helpers.in_env("document") }
+	),
+	s(
+		{
+			trig = "newdoc",
+		},
+		fmta(
+			[[
+            \documentclass[<>]{<>}
+            <>
+
+            \title{<>}
+            \author{Arvin Kushwaha}
+            \date{\today}
+
+            \begin{document}
+            \maketitle
+
+            <>
+
+            \end{document}
+            ]],
+			{ i(2), i(1), i(3), i(4), i(0) }
 		),
 		{ condition = conds_expand.line_begin * helpers.in_text * -helpers.in_env("document") }
 	),

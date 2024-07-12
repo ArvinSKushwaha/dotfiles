@@ -42,7 +42,7 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "fr", snippetType = "autosnippet", wordTrig = false },
+		{ trig = "fk", snippetType = "autosnippet", wordTrig = false },
 		fmta("\\mathfrak{<>}", { d(1, helpers.get_visual) }),
 		{ condition = helpers.in_mathzone }
 	),
@@ -75,7 +75,7 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([\\0-9A-Za-z_]+)'sr", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		{ trig = "([\\0-9A-Za-z_]+)'sk", regTrig = true, snippetType = "autosnippet", wordTrig = false },
 		fmta("\\mathfrak{<>}", {
 			f(function(args, parents, user_args)
 				return parents.captures[1]
@@ -97,9 +97,11 @@ return {
 		fmta("\\SI{<>}{<>}", { d(1, helpers.get_visual), i(2) }),
 		{ condition = helpers.in_mathzone }
 	),
-	s({ trig = "--", snippetType = "autosnippet" }, fmta("\\item <> ", { d(1, helpers.get_visual) }), {
-		condition = (helpers.in_itemize + helpers.in_env("enumerate")) * conds_expand.line_begin,
-	}),
+	s(
+		{ trig = "--", snippetType = "autosnippet" },
+		fmta("\\item<>", { t(" ") }),
+		{ condition = (helpers.in_itemize + helpers.in_env("enumerate")) * conds_expand.line_begin }
+	),
 	s(
 		{ trig = "(%s)'([123])", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
 		fmta("<>", {
@@ -178,13 +180,18 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
+		{ trig = "ovr", snippetType = "autosnippet" },
+		fmta([[\overline{<>}]], { i(1) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
 		{ trig = "'ls", snippetType = "autosnippet", wordTrig = false },
 		fmta([[\limits_{<>}^{<>} ]], { i(1), i(2) }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
 		{ trig = "([A-Za-z0-9]?)'dx", regTrig = true, snippetType = "autosnippet" },
-		fmta("\\dv<>{<>}{<>}", {
+		fmta("\\odv<>{<>}{<>}", {
 			f(function(args, parents, user_args)
 				if #parents.captures[1] > 0 then
 					return "[" .. parents.captures[1] .. "]"
@@ -202,7 +209,7 @@ return {
 		fmta("\\pdv<>{<>}{<>}", {
 			f(function(args, parents, user_args)
 				if #parents.captures[1] > 0 then
-					return "[" .. parents.captures[1] .. "]"
+					return "[ord=" .. parents.captures[1] .. "]"
 				else
 					return ""
 				end
@@ -299,16 +306,22 @@ return {
 	),
 	s(
 		{ trig = "([\\A-Za-z]+)dif", regTrig = true, snippetType = "autosnippet", wordTrig = false },
-		fmta("\\dd{<>}", { f(function(args, parents, user_args)
+		fmta("\\dd <>", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([\\A-Za-z{}']+)'df", regTrig = true, snippetType = "autosnippet", wordTrig = false },
-		fmta("\\dd{<>}", { f(function(args, parents, user_args)
-			return parents.captures[1]
-		end) }),
+		{ trig = "([\\A-Za-z{}']*)'df", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		fmta("\\dd<>", {
+			d(1, function(args, parents, user_args)
+				if #parents.captures[1] == 0 then
+					return sn(nil, { i(1) })
+				else
+					return sn(nil, { t(" " .. parents.captures[1]) })
+				end
+			end),
+		}),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
@@ -326,20 +339,10 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "([\\A-Za-z{}']+)'ev", regTrig = true, snippetType = "autosnippet", wordTrig = false },
+		{ trig = "([\\A-Za-z_^{}']+)'ev", regTrig = true, snippetType = "autosnippet", wordTrig = false },
 		fmta("\\eval{<>}", { f(function(args, parents, user_args)
 			return parents.captures[1]
 		end) }),
-		{ condition = helpers.in_mathzone }
-	),
-	s(
-		{ trig = "mpt", snippetType = "autosnippet" },
-		fmta("\\mappingto{<>}{<>}{<>}", { i(1), i(2), i(3) }),
-		{ condition = helpers.in_mathzone }
-	),
-	s(
-		{ trig = "mpg", snippetType = "autosnippet" },
-		fmta("\\mapping{<>}{<>}{<>}", { i(1), i(2), i(3) }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(

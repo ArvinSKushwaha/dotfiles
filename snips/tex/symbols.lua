@@ -127,11 +127,6 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "'Ta", snippetType = "autosnippet", wordTrig = false },
-		fmta(" \\Tau", {}),
-		{ condition = helpers.in_mathzone }
-	),
-	s(
 		{ trig = "'ch", snippetType = "autosnippet", wordTrig = false },
 		fmta(" \\chi", {}),
 		{ condition = helpers.in_mathzone }
@@ -179,6 +174,16 @@ return {
 	s(
 		{ trig = "'vas", snippetType = "autosnippet", wordTrig = false },
 		fmta(" \\varsigma", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'xi", snippetType = "autosnippet", wordTrig = false },
+		fmta(" \\xi", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'Xi", snippetType = "autosnippet", wordTrig = false },
+		fmta(" \\Xi", {}),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
@@ -237,6 +242,11 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
+		{ trig = "'par", snippetType = "autosnippet", wordTrig = false },
+		fmta("\\partial", {}),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
 		{ trig = "'cir", snippetType = "autosnippet", wordTrig = false },
 		fmta("\\circ", {}),
 		{ condition = helpers.in_mathzone }
@@ -277,8 +287,8 @@ return {
 		{ condition = helpers.in_mathzone }
 	),
 	s(
-		{ trig = "'|", snippetType = "autosnippet", wordTrig = false },
-		fmta([[\,\middle|\,]], {}),
+		{ trig = "'mi", snippetType = "autosnippet", wordTrig = false },
+		fmta([[<>\,\middle|\,<>]], { t(" "), t(" ") }),
 		{ condition = helpers.in_mathzone }
 	),
 	s(
@@ -286,9 +296,40 @@ return {
 		fmta([[\left<> <> \right<>]], { i(1), i(3), i(2) }),
 		{ condition = helpers.in_mathzone }
 	),
-	s({ trig = "'br", snippetType = "autosnippet", wordTrig = false }, fmta([[\Bra{<>}]], { i(1) }), { condition = helpers.in_mathzone }),
+	s(
+		{ trig = "'br", snippetType = "autosnippet", wordTrig = false },
+		fmta([[\bra{<>}]], { i(1) }),
+		{ condition = helpers.in_mathzone }
+	),
 
-	s({ trig = "'ke", snippetType = "autosnippet", wordTrig = false }, fmta([[\Ket{<>}]], { i(1) }), { condition = helpers.in_mathzone }),
-	s({ trig = "'bk", snippetType = "autosnippet", wordTrig = false }, fmta([[\Braket{<>}]], { i(1) }), { condition = helpers.in_mathzone }),
-	s({ trig = "'se", snippetType = "autosnippet", wordTrig = false }, fmta([[\Set{<>}]], { i(1) }), { condition = helpers.in_mathzone }),
+	s(
+		{ trig = "'ke", snippetType = "autosnippet", wordTrig = false },
+		fmta([[\ket{<>}]], { i(1) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "1'bk", snippetType = "autosnippet", wordTrig = false },
+		fmta([[\braket[1]{<>}]], { i(1) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "3'bk", snippetType = "autosnippet", wordTrig = false },
+		fmta([[\braket[3]{<>}{<>}{<>}]], { i(1), i(2), i(3) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'bk", snippetType = "autosnippet", wordTrig = false },
+		fmta([[\braket{<>}{<>}]], { i(1), i(2) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'kb", snippetType = "autosnippet", wordTrig = false },
+		fmta([[\ketbra{<>}{<>}]], { i(1), i(2) }),
+		{ condition = helpers.in_mathzone }
+	),
+	s(
+		{ trig = "'se", snippetType = "autosnippet", wordTrig = false },
+		fmta([[\ab\{ <> \}]], { i(1) }),
+		{ condition = helpers.in_mathzone }
+	),
 }

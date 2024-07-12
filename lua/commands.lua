@@ -1,5 +1,6 @@
 vim.api.nvim_create_user_command("LoadToday", function()
 	local date = os.date("*t")
+	vim.fn.system(string.format("mkdir -p ~/Nextcloud/arvim/Journal/%04d/%02d/", date.year, date.month))
 	vim.cmd(
 		string.format(
 			"tabnew ~/Nextcloud/arvim/Journal/%04d/%02d/%04d-%02d-%02d.md",
